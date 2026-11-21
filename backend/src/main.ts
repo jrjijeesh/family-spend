@@ -14,6 +14,9 @@ async function bootstrap() {
     helmet({
       contentSecurityPolicy: false,
       crossOriginEmbedderPolicy: false,
+      crossOriginOpenerPolicy: false,
+      originAgentCluster: false,
+      hsts: false,
     }),
   );
   app.enableCors({ origin: process.env.ALLOWED_ORIGINS?.split(',') ?? true });
