@@ -10,7 +10,12 @@ dotenv.config();
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+      crossOriginEmbedderPolicy: false,
+    }),
+  );
   app.enableCors({ origin: process.env.ALLOWED_ORIGINS?.split(',') ?? true });
   app.setGlobalPrefix('api/v1');
 
